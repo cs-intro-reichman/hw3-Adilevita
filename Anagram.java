@@ -22,22 +22,50 @@ public class Anagram {
 			System.out.println(randomAnagram);
 			pass = pass && isAnagram(str, randomAnagram);
 			if (!pass) break;
+
 		}
 		System.out.println(pass ? "test passed" : "test Failed");
 	}  
-
+	
+	
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
-		return false;
-	}
+		if (str1.length() != str2.length()) {
+			return false;
+		}
+		boolean found = true;
+
+		for (int i = 0; i < str1.length(); i++) {
+				char c = str1.charAt(i);
+				 found = false;
+
+				for (int j = 0; j < str2.length(); j++) {
+						if (str2.charAt(j) == c) {
+								str2 = removeCharAt(str2, j);
+								found = true;
+								break;
+						}
+			}
+		}
+		return found;
+}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+	String result = ""; 
+	for (int i = 0; i < str.length(); i++) {
+		char c = str.charAt(i);
+		c = Character.toLowerCase(c);
+		if (Character.isLetter(c)) {
+		}
+		result = result + c;
+		if (Character.isDigit(c)) {
+		}
+				result = result + c;
+		}
+		return result;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
@@ -46,4 +74,11 @@ public class Anagram {
 		// Replace the following statement with your code
 		return "";
 	}
+
+	public static String removeCharAt (String s, int index) {
+		String newstr = s.substring(0,index) + s.substring(index +1);
+		return newstr;
+	}
+
+		
 }
